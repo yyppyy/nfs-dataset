@@ -39,7 +39,7 @@ pc.defineParameter("clientCount", "Number of NFS clients",
 
 pc.defineParameter("dataset", "Your dataset URN",
                    portal.ParameterType.STRING,
-                   "urn:publicid:IDN+emulab.net:portalprofiles+ltdataset+DemoDataset")
+                   "urn:publicid:IDN+utah.cloudlab.us:mind-disagg-pg0+stdataset+mind_memory_accesses")
 
 pc.defineParameter("osImage", "Select OS image",
                    portal.ParameterType.IMAGE,
