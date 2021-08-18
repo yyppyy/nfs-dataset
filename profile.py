@@ -81,11 +81,11 @@ dsnode = request.RemoteBlockstore("dsnode", nfsDirectory)
 dsnode.dataset = params.dataset
 
 # Link between the nfsServer and the ISCSI device that holds the dataset
-'''
 dslink = request.Link("dslink")
 dslink.addInterface(dsnode.interface)
 dslink.addInterface(nfsServer.addInterface())
 # Special attributes for this link that we must use.
+'''
 dslink.best_effort = True
 dslink.vlan_tagging = True
 dslink.link_multiplexing = True
