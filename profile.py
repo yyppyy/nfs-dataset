@@ -115,7 +115,7 @@ for i in range(1, params.clientCount+1):
     iparr[-1] = str(int(iparr[-1]) + i)
     ipstr = ".".join(iparr)
     MINDnodeiface.addAddress(pg.IPv4Address(ipstr, params.MINDNetMask))
-    MINDlink = request.Link("MINDlink%d" % i)
+    MINDlink = request.L1Link("MINDlink%d" % i)
     MINDlink.addInterface(MINDnodeiface)
     MINDlink.addInterface(MINDswiface)
     
