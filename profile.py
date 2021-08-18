@@ -101,11 +101,13 @@ MINDsw.hardware_type = params.phystype
 # The NFS clients, also attached to the NFS lan.
 for i in range(1, params.clientCount+1):
     node = request.RawPC("node%d" % i)
+    '''
     node.hardware_type = 'c6525-100g'
     node.disk_image = params.osImage
     mybs = node.Blockstore("mybs%d" % i, "/mydata")
     mybs.size = params.localStorageSize
     nfsLan.addInterface(node.addInterface())
+    '''
     
     #mind net
     MINDswiface = MINDsw.addInterface()
