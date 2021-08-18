@@ -61,14 +61,13 @@ pc.defineParameter("MINDNetMask", "mind network mask",
 
 # Always need this when using parameters
 params = pc.bindParameters()
-'''
+
 ################################################################## NFS for remote dataset #####################
 # The NFS network. All these options are required.
 nfsLan = request.LAN(nfsLanName)
 nfsLan.best_effort       = True
 nfsLan.vlan_tagging      = True
 nfsLan.link_multiplexing = True
-
 # The NFS server.
 nfsServer = request.RawPC(nfsServerName)
 nfsServer.disk_image = params.osImage
@@ -76,7 +75,7 @@ nfsServer.disk_image = params.osImage
 nfsLan.addInterface(nfsServer.addInterface())
 # Initialization script for the server
 nfsServer.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-server.sh"))
-
+'''
 # Special node that represents the ISCSI device where the dataset resides
 dsnode = request.RemoteBlockstore("dsnode", nfsDirectory)
 dsnode.dataset = params.dataset
