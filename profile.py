@@ -61,7 +61,7 @@ pc.defineParameter("MINDNetMask", "mind network mask",
 
 # Always need this when using parameters
 params = pc.bindParameters()
-
+'''
 ################################################################## NFS for remote dataset #####################
 # The NFS network. All these options are required.
 nfsLan = request.LAN(nfsLanName)
@@ -90,7 +90,7 @@ dslink.best_effort = True
 dslink.vlan_tagging = True
 dslink.link_multiplexing = True
 ################################################################## NFS for remote dataset #####################
-
+'''
 
 ################################################################## MIND Net ###################################
 MINDsw = request.Switch("MINDsw");
@@ -101,11 +101,13 @@ MINDsw.hardware_type = params.phystype
 # The NFS clients, also attached to the NFS lan.
 for i in range(1, params.clientCount+1):
     node = request.RawPC("node%d" % i)
+    '''
     node.hardware_type = 'c6525-100g'
     node.disk_image = params.osImage
     mybs = node.Blockstore("mybs%d" % i, "/mydata")
     mybs.size = params.localStorageSize
     nfsLan.addInterface(node.addInterface())
+    '''
     
     #mind net
     MINDswiface = MINDsw.addInterface()
@@ -114,12 +116,14 @@ for i in range(1, params.clientCount+1):
     iparr[-1] = str(int(iparr[-1]) + i)
     ipstr = ".".join(iparr)
     MINDnodeiface.addAddress(pg.IPv4Address(ipstr, params.MINDNetMask))
-    MINDlink = request.L1Link("link%d" % i)
+    MINDlink = request.L1Link("MINDlink%d" % i)
     MINDlink.addInterface(MINDnodeiface)
     MINDlink.addInterface(MINDswiface)
     
     # Initialization script for the clients
+    '''
     node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh"))
+    '''
     pass
 
 # Print the RSpec to the enclosing page.
