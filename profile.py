@@ -81,7 +81,7 @@ dsnode = request.RemoteBlockstore("dsnode", nfsDirectory)
 dsnode.dataset = params.dataset
 
 # Link between the nfsServer and the ISCSI device that holds the dataset
-dslink = request.L1Link("dslink")
+dslink = request.Link("dslink")
 dslink.addInterface(dsnode.interface)
 dslink.addInterface(nfsServer.addInterface())
 # Special attributes for this link that we must use.
@@ -115,7 +115,7 @@ for i in range(1, params.clientCount+1):
     iparr[-1] = str(int(iparr[-1]) + i)
     ipstr = ".".join(iparr)
     MINDnodeiface.addAddress(pg.IPv4Address(ipstr, params.MINDNetMask))
-    MINDlink = request.L1Link("MINDlink%d" % i)
+    MINDlink = request.Link("MINDlink%d" % i)
     MINDlink.addInterface(MINDnodeiface)
     MINDlink.addInterface(MINDswiface)
     
