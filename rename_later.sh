@@ -6,7 +6,8 @@ vm_vcpus=10
 
 #install virsh
 sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst
-#enter a Y later...
+#enter a Y later... see the example below
+#echo "Y Y N N Y N Y Y N" | ./your_script
 
 #create default network
 #REPO_DIR=/local/repository/
