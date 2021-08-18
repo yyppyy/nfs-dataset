@@ -1,11 +1,13 @@
 num_CNs=1
 nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
+trace_dir=/mydata/traces/
 vm_mem=8192
 vm_vcpus=10
+default_net=192.168.122.0/24
 
 #change sudo
-echo 'Yanpeng   ALL=(ALL) NOPASSWD:/usr/bin/virsh, /sbin/ip' | sudo EDITOR='tee -a' visudo
+#echo 'Yanpeng   ALL=(ALL) NOPASSWD:/usr/bin/virsh, /sbin/ip' | sudo EDITOR='tee -a' visudo
 
 #install virsh and xdotool
 sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst
@@ -18,10 +20,20 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst
 #sudo virsh net-start default
 
 #localize vm images
-sudo mkdir -p $vm_dir
+sudo mkdir -p ${vm_dir}
 for i in $(seq 1 ${num_CNs}); do
     sudo cp ${nfs_dir}vm_images/ubuntu_CN_${i}.qcow ${vm_dir}
 done
+
+#create local nfs to feed data to vms
+sudo apt install nfs-kernel-server
+sudo mkdir -p -m 777 ${trace_dir}
+sudo echo "${trace_dir}  ${default_net}(r,sync,no_subtree_check)" >> /etx/exports
+sudo exportfs -a
+sudo systemctl restart nfs-kernel-server
+#sudo ufw allow from ${default_net} to any port nfs
+#sudo ufw enable
+
 
 #create VM
 for i in $(seq 1 $num_CNs); do
