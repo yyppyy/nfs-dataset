@@ -108,7 +108,7 @@ for i in range(1, params.clientCount+1):
     nfsLan.addInterface(node.addInterface())
     
     #mind net
-    MINDswiface = mysw.addInterface()
+    MINDswiface = MINDsw.addInterface()
     MINDnodeiface = node.addInterface()
     iparr = list(params.MINDNet.split("."))
     iparr[-1] = str(int(iparr[-1]) + i)
