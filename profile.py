@@ -111,7 +111,7 @@ for i in range(1, params.clientCount+1):
     MINDswiface = mysw.addInterface()
     MINDnodeiface = node.addInterface()
     iparr = list(params.MINDNet.split("."))
-    iparr[-1] = str(int(iparr[-1]) + i))
+    iparr[-1] = str(int(iparr[-1]) + i)
     ipstr = ".".join(iparr)
     MINDnodeiface.addAddress(pg.IPv4Address(ipstr, params.MINDNetMask))
     MINDlink = request.L1Link("MINDlink%d" % i)
