@@ -1,3 +1,9 @@
+num_CNs=1
+nfs_dir=/nfs/
+vm_dir=/mydata/vm_images/
+vm_mem=8192
+vm_vcpus=10
+
 #install virsh
 sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst
 #enter a Y later...
@@ -7,8 +13,13 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst
 #sudo virsh net-define --file ${REPO_DIR}default.xml
 #sudo virsh net-start default
 
+#localize vm images
+sudo mkdir -p $vm_dir
+for i in $(seq 1 ${num_CNs}); do
+    sudo cp ${nfs_dir}vm_images/ubuntu_CN_${i}.qcow ${vm_dir}
+done
+
 #create VM
-num_CNs=1
 for i in $(seq 1 $num_CNs); do
-    sudo virt-install --name ubuntu_CN$i --memory 8192 --vcpus 10 --disk /nfs/vm_images/ubuntu_CN_$i.qcow --network default
+    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default
 done
