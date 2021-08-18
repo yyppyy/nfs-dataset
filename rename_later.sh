@@ -8,7 +8,7 @@ vm_vcpus=10
 echo 'Yanpeng   ALL=(ALL) NOPASSWD:/usr/bin/virsh, /sbin/ip' | sudo EDITOR='tee -a' visudo
 
 #install virsh and xdotool
-sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst xdotool
+sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst
 #enter a Y later... see the example below
 #echo "Y Y N N Y N Y Y N" | ./your_script
 
@@ -25,5 +25,5 @@ done
 
 #create VM
 for i in $(seq 1 $num_CNs); do
-    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole
+    virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole
 done
