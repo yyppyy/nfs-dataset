@@ -1,0 +1,3 @@
+#install virsh
+sudo apt install libvirt-clients
+#enter a Y later...
