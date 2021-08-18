@@ -3,7 +3,6 @@ a long term dataset that is persistent across experiments. In order to use this 
 you will need to create your own dataset and use that instead of the demonstration 
 dataset below. If you do not need persistant storage, we have another profile that
 uses temporary storage (removed when your experiment ends) that you can use. 
-
 Instructions:
 Click on any node in the topology and choose the `shell` menu item. Your shared NFS directory is mounted at `/nfs` on all nodes."""
 
@@ -68,6 +67,7 @@ nfsLan = request.LAN(nfsLanName)
 nfsLan.best_effort       = True
 nfsLan.vlan_tagging      = True
 nfsLan.link_multiplexing = True
+
 # The NFS server.
 nfsServer = request.RawPC(nfsServerName)
 nfsServer.disk_image = params.osImage
@@ -75,6 +75,7 @@ nfsServer.disk_image = params.osImage
 nfsLan.addInterface(nfsServer.addInterface())
 # Initialization script for the server
 nfsServer.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-server.sh"))
+
 # Special node that represents the ISCSI device where the dataset resides
 dsnode = request.RemoteBlockstore("dsnode", nfsDirectory)
 dsnode.dataset = params.dataset
