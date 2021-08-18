@@ -4,13 +4,13 @@ vm_dir=/mydata/vm_images/
 vm_mem=8192
 vm_vcpus=10
 
+#change sudo
+echo 'Yanpeng   ALL=(ALL) NOPASSWD:/usr/bin/virsh, /sbin/ip' | sudo EDITOR='tee -a' visudo
+
 #install virsh and xdotool
 sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst xdotool
 #enter a Y later... see the example below
 #echo "Y Y N N Y N Y Y N" | ./your_script
-
-#change sudo
-echo 'Yanpeng   ALL=(ALL) NOPASSWD:/usr/bin/virsh, /sbin/ip' | sudo EDITOR='tee -a' visudo
 
 #create default network
 #REPO_DIR=/local/repository/
