@@ -81,7 +81,7 @@ for i in range(1, params.clientCount+1):
     node.hardware_type = 'c6525-100g'
     node.disk_image = params.osImage
     bs = node.Blockstore("bs", "/mydata")
-    bs.size = "1TB"
+    bs.size = "1024GB"
     nfsLan.addInterface(node.addInterface())
     # Initialization script for the clients
     node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh"))
