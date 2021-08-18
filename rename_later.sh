@@ -9,6 +9,10 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst
 #enter a Y later... see the example below
 #echo "Y Y N N Y N Y Y N" | ./your_script
 
+#change sudo
+export EDITOR="/bin/nano"
+#Yanpeng   ALL=(ALL) NOPASSWD:/usr/bin/virsh, /usr/sbin/ip
+
 #create default network
 #REPO_DIR=/local/repository/
 #sudo virsh net-define --file ${REPO_DIR}default.xml
