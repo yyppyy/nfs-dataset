@@ -116,7 +116,7 @@ for i in range(1, params.clientCount+1):
     MINDnodeiface.addAddress(pg.IPv4Address(ipstr, params.MINDNetMask))
     MINDlink = request.L1Link("MINDlink%d" % i)
     MINDlink.addInterface(MINDswiface)
-    MINDlink.addrInterface(MINDnodeiface)
+    MINDlink.addInterface(MINDnodeiface)
     
     # Initialization script for the clients
     node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh"))
