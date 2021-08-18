@@ -1,3 +1,3 @@
 #install virsh
-sudo apt install libvirt-clients
+sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst
 #enter a Y later...
