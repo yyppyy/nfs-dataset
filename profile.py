@@ -80,6 +80,8 @@ for i in range(1, params.clientCount+1):
     node = request.RawPC("node%d" % i)
     node.hardware_type = 'c6525-100g'
     node.disk_image = params.osImage
+    node.Blockstore("bs", "/mydata")
+    bs.size("1024GB")
     nfsLan.addInterface(node.addInterface())
     # Initialization script for the clients
     node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh"))
