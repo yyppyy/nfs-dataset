@@ -77,12 +77,11 @@ nfsLan.addInterface(nfsServer.addInterface())
 # Initialization script for the server
 nfsServer.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-server.sh"))
 
-'''
 # Special node that represents the ISCSI device where the dataset resides
 dsnode = request.RemoteBlockstore("dsnode", nfsDirectory)
 dsnode.dataset = params.dataset
-'''
 
+'''
 # Link between the nfsServer and the ISCSI device that holds the dataset
 dslink = request.Link("dslink")
 dslink.addInterface(dsnode.interface)
@@ -91,6 +90,7 @@ dslink.addInterface(nfsServer.addInterface())
 dslink.best_effort = True
 dslink.vlan_tagging = True
 dslink.link_multiplexing = True
+'''
 ################################################################## NFS for remote dataset #####################
 
 
