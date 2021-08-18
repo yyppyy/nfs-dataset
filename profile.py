@@ -46,7 +46,7 @@ pc.defineParameter("osImage", "Select OS image",
                    imageList[1], imageList)
 
 pc.defineParameter("localStorageSize", "local storage size",
-                   portal.ParameterType.STRING, "500GB")
+                   portal.ParameterType.STRING, "0")
 
 # Always need this when using parameters
 params = pc.bindParameters()
