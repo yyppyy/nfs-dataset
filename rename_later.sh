@@ -39,7 +39,7 @@ done
 
 #create local nfs to feed data to vms
 sudo mkdir -p -m 777 ${trace_dir}
-sudo echo "${trace_dir}  ${default_net}(r,sync,no_subtree_check)" >> /etc/exports
+echo "${trace_dir}  ${default_net}(r,sync,no_subtree_check)" | sudo tee /etc/exports
 sudo exportfs -a
 sudo systemctl restart nfs-kernel-server
 #sudo ufw allow from ${default_net} to any port nfs
