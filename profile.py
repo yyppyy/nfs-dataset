@@ -62,6 +62,7 @@ pc.defineParameter("MINDNetMask", "mind network mask",
 params = pc.bindParameters()
 
 ################################################################## NFS for remote dataset #####################
+'''
 # The NFS network. All these options are required.
 nfsLan = request.LAN(nfsLanName)
 nfsLan.best_effort       = True
@@ -71,6 +72,12 @@ nfsLan.link_multiplexing = True
 # The NFS server.
 nfsServer = request.RawPC(nfsServerName)
 nfsServer.disk_image = params.osImage
+'''
+fsnode = request.RemoteBlockstore("fsnode", "/mydata")
+fsnode.dataset = params.dataset
+
+# nfsServer.addService(pg.Execute(shell="sh", command="sudo echo Y | /bin/bash /local/repository/nfs-server.sh"))
+'''
 # Attach server to lan.
 nfsLan.addInterface(nfsServer.addInterface())
 # Initialization script for the server
@@ -88,6 +95,7 @@ dslink.addInterface(nfsServer.addInterface())
 dslink.best_effort = True
 dslink.vlan_tagging = True
 dslink.link_multiplexing = True
+'''
 ################################################################## NFS for remote dataset #####################
 
 
@@ -104,7 +112,16 @@ for i in range(1, params.clientCount+1):
     node.disk_image = params.osImage
     mybs = node.Blockstore("mybs%d" % i, "/mydata")
     mybs.size = params.localStorageSize
+    
+    fslink = request.Link("fslink%d" % i)
+    fslink.addInterface(node.addInterface())
+    fslink.addInterface(fsnode.interface)
+    fslink.best_effort = True
+    fslink.vlan_tagging = True
+
+    '''
     nfsLan.addInterface(node.addInterface())
+    '''
     
     #mind net
     MINDswiface = MINDsw.addInterface()
@@ -118,7 +135,7 @@ for i in range(1, params.clientCount+1):
     MINDlink.addInterface(MINDswiface)
     
     # Initialization script for the clients
-    node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh"))
+    # node.addService(pg.Execute(shell="sh", command="sudo echo Y | /bin/bash /local/repository/nfs-client.sh"))
     pass
 
 # Print the RSpec to the enclosing page.
