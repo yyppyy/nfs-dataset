@@ -1,8 +1,6 @@
-default_net=192.168.1.0/24
-trace_dir=/traces
+host="192.168.1.1"
+host_dir="/mydata"
+mnt_dir="/traces"
 
-
-sudo mkdir -p -m 777 ${trace_dir}
-echo "${trace_dir}  ${default_net}(r,sync,no_subtree_check)" | sudo tee /etc/exports
-sudo exportfs -a
-sudo systemctl restart nfs-kernel-server
+sudo mkdir -p -m 777 $mnt_dir
+sudo mount $host:$host_dir  $mnt_dir
