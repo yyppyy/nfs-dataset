@@ -78,6 +78,7 @@ dslink.link_multiplexing = True
 # The NFS clients, also attached to the NFS lan.
 for i in range(1, params.clientCount+1):
     node = request.RawPC("node%d" % i)
+    node.hardware_type = 'c6525-100g'
     node.disk_image = params.osImage
     nfsLan.addInterface(node.addInterface())
     # Initialization script for the clients
