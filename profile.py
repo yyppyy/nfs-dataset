@@ -45,6 +45,9 @@ pc.defineParameter("osImage", "Select OS image",
                    portal.ParameterType.IMAGE,
                    imageList[1], imageList)
 
+pc.defineParameter("localStorageSize", "local storage size",
+                   portal.ParameterType.STRING, "500GB")
+
 # Always need this when using parameters
 params = pc.bindParameters()
 
@@ -81,7 +84,7 @@ for i in range(1, params.clientCount+1):
     node.hardware_type = 'c6525-100g'
     node.disk_image = params.osImage
     mybs = node.Blockstore("mybs", "/mydata")
-    mybs.size = "1024GB"
+    mybs.size = params.localStorageSize
     nfsLan.addInterface(node.addInterface())
     # Initialization script for the clients
     node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh"))
