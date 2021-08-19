@@ -1,4 +1,5 @@
-num_CNs=1
+CN_first=1
+CN_last=2
 nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
 trace_dir=/mydata/traces/
@@ -31,7 +32,7 @@ done
 
 
 #create VM
-for i in $(seq 1 $num_CNs); do
+for i in $(seq $CN_first $CN_last); do
     sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole
 done
 
@@ -39,6 +40,7 @@ done
 
 #create local nfs to feed data to vms
 sudo mkdir -p -m 777 ${trace_dir}
+sudo cp ${nfs_dir}
 echo "${trace_dir}  ${default_net}(r,sync,no_subtree_check)" | sudo tee /etc/exports
 sudo exportfs -a
 sudo systemctl restart nfs-kernel-server
