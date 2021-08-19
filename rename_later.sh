@@ -1,5 +1,5 @@
-CN_first=1
-CN_last=2
+CN_first=$1
+CN_last=$2
 trace_per_CN=10
 nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
