@@ -1,11 +1,13 @@
 CN_first=1
 CN_last=2
+trace_per_CN=10
 nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
 trace_dir=/mydata/traces/
 vm_mem=8192
 vm_vcpus=10
 default_net=192.168.122.0/24
+apps="tf gc ma mc"
 
 #change sudo
 #echo 'Yanpeng   ALL=(ALL) NOPASSWD:/usr/bin/virsh, /sbin/ip' | sudo EDITOR='tee -a' visudo
@@ -38,9 +40,21 @@ done
 
 
 
-#create local nfs to feed data to vms
+#localize traces
 sudo mkdir -p -m 777 ${trace_dir}
-sudo cp ${nfs_dir}
+trace_first=$((${CN_first} * ${trace_per_CN} - ${trace_per_CN}))
+trace_last=$((${CN_first} * ${trace_per_CN} - 1))
+for app in ${apps}; do
+    sudo mkdir -p -m 777 ${trace_dir}${app}_traces
+    for i in $(seq ${trace_first} ${trace_last}); do
+        sudo cp ${nfs_dir}${app}_traces/${i} ${trace_dir}${app}_traces/ &
+    done
+done
+wait
+
+
+
+#create local nfs to feed data to vms
 echo "${trace_dir}  ${default_net}(r,sync,no_subtree_check)" | sudo tee /etc/exports
 sudo exportfs -a
 sudo systemctl restart nfs-kernel-server
