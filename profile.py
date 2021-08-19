@@ -91,24 +91,22 @@ dslink.vlan_tagging = True
 dslink.link_multiplexing = True
 ################################################################## NFS for remote dataset #####################
 
-
+'''
 ################################################################## MIND Net ###################################
 MINDsw = request.Switch("MINDsw");
 MINDsw.hardware_type = params.phystype
 ################################################################## MIND Net ###################################
-
+'''
 
 # The NFS clients, also attached to the NFS lan.
 for i in range(1, params.clientCount+1):
     node = request.RawPC("node%d" % i)
-    '''
     node.hardware_type = 'c6525-100g'
-    '''
     node.disk_image = params.osImage
     mybs = node.Blockstore("mybs%d" % i, "/mydata")
     mybs.size = params.localStorageSize
     nfsLan.addInterface(node.addInterface())
-    
+    '''
     #mind net
     MINDswiface = MINDsw.addInterface()
     MINDnodeiface = node.addInterface()
@@ -119,7 +117,7 @@ for i in range(1, params.clientCount+1):
     MINDlink = request.L1Link("MINDlink%d" % i)
     MINDlink.addInterface(MINDnodeiface)
     MINDlink.addInterface(MINDswiface)
-    
+    '''
     # Initialization script for the clients
     node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh"))
     pass
