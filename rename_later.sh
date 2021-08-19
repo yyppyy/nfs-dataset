@@ -7,7 +7,8 @@ trace_dir=/mydata/traces/
 vm_mem=8192
 vm_vcpus=10
 default_net=192.168.122.0/24
-apps="tf gc ma mc"
+#apps="tf gc ma mc"
+apps="ma"
 
 #change sudo
 #echo 'Yanpeng   ALL=(ALL) NOPASSWD:/usr/bin/virsh, /sbin/ip' | sudo EDITOR='tee -a' visudo
@@ -26,21 +27,24 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst nfs-kernel-server
 
 
 #localize vm images
+echo "localizing vm images"
 sudo mkdir -p ${vm_dir}
-for i in $(seq 1 ${num_CNs}); do
-    sudo cp ${nfs_dir}vm_images/ubuntu_CN_${i}.qcow ${vm_dir}
+for i in $(seq ${CN_first} ${CN_last}); do
+    sudo cp ${nfs_dir}vm_images/ubuntu_CN_${i}.qcow ${vm_dir} &
 done
-
+wait
 
 
 #create VM
-for i in $(seq $CN_first $CN_last); do
-    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole
+echo "creating vms"
+for i in $(seq ${CN_first} ${CN_last}); do
+    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole &
 done
-
+wait
 
 
 #localize traces
+echo "localizing traces"
 sudo mkdir -p -m 777 ${trace_dir}
 trace_first=$((${CN_first} * ${trace_per_CN} - ${trace_per_CN}))
 trace_last=$((${CN_first} * ${trace_per_CN} - 1))
@@ -55,7 +59,8 @@ wait
 
 
 #create local nfs to feed data to vms
-echo "${trace_dir}  ${default_net}(r,sync,no_subtree_check)" | sudo tee /etc/exports
+echo "building NFS"
+echo "${trace_dir}  ${default_net}(rw,sync,no_subtree_check)" | sudo tee /etc/exports
 sudo exportfs -a
 sudo systemctl restart nfs-kernel-server
 #sudo ufw allow from ${default_net} to any port nfs
