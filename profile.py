@@ -119,7 +119,7 @@ for i in range(1, params.clientCount+1):
     MINDlink.addInterface(MINDswiface)
     '''
     # Initialization script for the clients
-    node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh"))
+    node.addService(pg.Execute(shell="sh", command="sudo /bin/bash /local/repository/nfs-client.sh && sudo chmod +x /local/repository/start_CN_server.sh && sudo echo Y | /local/repository/start_CN_server.sh"))
     pass
 
 # Print the RSpec to the enclosing page.
