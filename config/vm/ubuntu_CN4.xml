@@ -1,5 +1,5 @@
 <domain type='kvm' id='29' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
-  <name>Ubuntu-CN4</name>
+  <name>ubuntu_CN4</name>
   <uuid>3da62a7d-751c-4cbc-b794-84c92632cc5a</uuid>
   <memory unit='KiB'>16777216</memory>
   <currentMemory unit='KiB'>16777216</currentMemory>
@@ -30,6 +30,7 @@
     <apic/>
     <vmport state='off'/>
   </features>
+  <!--
   <cpu mode='custom' match='exact' check='full'>
     <model fallback='forbid'>Haswell-noTSX-IBRS</model>
     <vendor>Intel</vendor>
@@ -56,6 +57,7 @@
     <feature policy='require' name='pschange-mc-no'/>
     <feature policy='disable' name='aes'/>
   </cpu>
+  -->
   <clock offset='utc'>
     <timer name='rtc' tickpolicy='catchup'/>
     <timer name='pit' tickpolicy='delay'/>
@@ -72,7 +74,7 @@
     <emulator>/usr/bin/kvm-spice</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/media/data_ssds/ubuntu_40-clone-2.qcow' index='1'/>
+      <source file='/mydata/vm_images/ubuntu_CN_4.qcow' index='1'/>
       <backingStore/>
       <target dev='vda' bus='virtio'/>
       <alias name='virtio-disk0'/>
@@ -155,7 +157,7 @@
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <driver name='vfio'/>
       <source>
-        <address domain='0x0000' bus='0x83' slot='0x00' function='0x1'/>
+        <address domain='0x0000' bus='0x41' slot='0x00' function='0x1'/>
       </source>
       <alias name='hostdev0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0a' function='0x0'/>
@@ -173,6 +175,7 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
     </memballoon>
   </devices>
+  <!--
   <seclabel type='dynamic' model='apparmor' relabel='yes'>
     <label>libvirt-3da62a7d-751c-4cbc-b794-84c92632cc5a</label>
     <imagelabel>libvirt-3da62a7d-751c-4cbc-b794-84c92632cc5a</imagelabel>
@@ -181,6 +184,7 @@
     <label>+64055:+108</label>
     <imagelabel>+64055:+108</imagelabel>
   </seclabel>
+  -->
   <qemu:commandline>
     <qemu:arg value='-gdb'/>
     <qemu:arg value='tcp::60002'/>
