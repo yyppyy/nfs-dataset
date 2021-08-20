@@ -1,5 +1,5 @@
 <domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
-  <name>Ubuntu-CN2</name>
+  <name>ubuntu_CN2</name>
   <uuid>9e0948ef-325f-40b7-9b31-6766080a1baa</uuid>
   <memory unit='KiB'>16777216</memory>
   <currentMemory unit='KiB'>16777216</currentMemory>
@@ -30,6 +30,7 @@
     <apic/>
     <vmport state='off'/>
   </features>
+  <!--
   <cpu mode='custom' match='exact' check='full'>
     <model fallback='forbid'>Haswell-noTSX-IBRS</model>
     <vendor>Intel</vendor>
@@ -56,6 +57,7 @@
     <feature policy='require' name='pschange-mc-no'/>
     <feature policy='disable' name='aes'/>
   </cpu>
+  -->
   <clock offset='utc'>
     <timer name='rtc' tickpolicy='catchup'/>
     <timer name='pit' tickpolicy='delay'/>
@@ -72,7 +74,7 @@
     <emulator>/usr/bin/kvm-spice</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/media/data_ssds/ubuntu_40.qcow'/>
+      <source file='/mydata/vm_images/ubuntu_CN_2.qcow'/>
       <backingStore/>
       <target dev='vda' bus='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
@@ -133,7 +135,7 @@
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <driver name='vfio'/>
       <source>
-        <address domain='0x0000' bus='0x84' slot='0x00' function='0x1'/>
+        <address domain='0x0000' bus='0x41' slot='0x00' function='0x1'/>
       </source>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
     </hostdev>
