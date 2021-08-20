@@ -149,8 +149,8 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
     </memballoon>
   </devices>
-  <seclabel type='dynamic' model='apparmor' relabel='yes'/>
-  <seclabel type='dynamic' model='dac' relabel='yes'/>
+  <!-- <seclabel type='dynamic' model='apparmor' relabel='yes'/> -->
+  <!-- <seclabel type='dynamic' model='dac' relabel='yes'/> -->
   <qemu:commandline>
     <qemu:arg value='-gdb'/>
     <qemu:arg value='tcp::60002'/>
