@@ -1,12 +1,14 @@
 <network>
   <name>default</name>
-  <uuid>9a05da11-e96b-47f3-8253-a3a482e445f5</uuid>
+  <uuid>fca5fcb6-e937-4cf9-9603-e27c5b1f501f</uuid>
   <forward mode='nat'/>
   <bridge name='virbr0' stp='on' delay='0'/>
-  <mac address='52:54:00:0a:cd:21'/>
+  <mac address='52:54:00:70:7b:08'/>
   <ip address='192.168.122.1' netmask='255.255.255.0'>
     <dhcp>
       <range start='192.168.122.2' end='192.168.122.254'/>
+      <host mac='52:54:00:51:42:40' name='Ubuntu-CN1' ip='192.168.122.101'/>
+      <host mac='52:54:00:d7:da:64' name='Ubuntu-CN2' ip='192.168.122.102'/>
     </dhcp>
   </ip>
 </network>
