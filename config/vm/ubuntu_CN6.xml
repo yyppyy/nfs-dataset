@@ -157,7 +157,7 @@
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <driver name='vfio'/>
       <source>
-        <address domain='0x0000' bus='0x41' slot='0x00' function='0x1'/>
+        <address domain='0x0000' bus='0x41' slot='0x00' function='0x0'/>
       </source>
       <alias name='hostdev0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
