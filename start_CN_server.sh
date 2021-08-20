@@ -3,6 +3,7 @@ CN_last=$2
 trace_per_CN=10
 nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
+vm_config_dir=/local/repository/config/vm/
 trace_dir=/mydata/traces/
 vm_mem=8192
 vm_vcpus=10
@@ -38,7 +39,7 @@ wait
 #create VM
 echo "creating vms"
 for i in $(seq ${CN_first} ${CN_last}); do
-    sudo virsh create ${vm_dir}ubuntu_CN_${i}.qcow
+    sudo virsh create ${vm_config_dir}ubuntu_CN${i}.xml
     sleep 10
 done
 #for i in $(seq ${CN_first} ${CN_last}); do
