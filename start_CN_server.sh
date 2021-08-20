@@ -38,9 +38,13 @@ wait
 #create VM
 echo "creating vms"
 for i in $(seq ${CN_first} ${CN_last}); do
-    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole &
+    sudo virsh create ${vm_dir}ubuntu_CN_${i}.qcow
+    sleep 10
 done
-wait
+#for i in $(seq ${CN_first} ${CN_last}); do
+#    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole &
+#done
+#wait
 
 
 #localize traces
