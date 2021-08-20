@@ -47,7 +47,7 @@
     <feature policy='require' name='pdpe1gb'/>
     <feature policy='require' name='abm'/>
     <feature policy='require' name='ibpb'/>
-    <feature policy='require' name='amd-stibp'/>
+    <!-- <feature policy='require' name='amd-stibp'/> -->
     <feature policy='require' name='amd-ssbd'/>
     <feature policy='require' name='skip-l1dfl-vmentry'/>
     <feature policy='require' name='pschange-mc-no'/>
