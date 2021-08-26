@@ -22,21 +22,10 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst nfs-kernel-server
 #sudo virsh net-start default
 
 
-
 #localize vm images
 echo "localizing vm images"
 sudo mkdir -p ${vm_dir}
 sudo cp ${nfs_dir}vm_images/fastswap_client.qcow2 ${vm_dir}
-
-
-#create VM
-echo "creating vms"
-sudo virsh create ${vm_config_dir}fastswap_client.xml
-sleep 10
-#for i in $(seq ${CN_first} ${CN_last}); do
-#    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole &
-#done
-#wait
 
 
 #localize traces
@@ -52,6 +41,15 @@ for app in ${apps}; do
 done
 wait
 
+
+#create VM
+echo "creating vms"
+sudo virsh create ${vm_config_dir}fastswap_client.xml
+sleep 10
+#for i in $(seq ${CN_first} ${CN_last}); do
+#    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole &
+#done
+#wait
 
 
 #create local nfs to feed data to vms
