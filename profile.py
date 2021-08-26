@@ -1,10 +1,4 @@
-"""This profile sets up a simple NFS server and a network of clients. The NFS server uses
-a long term dataset that is persistent across experiments. In order to use this profile,
-you will need to create your own dataset and use that instead of the demonstration 
-dataset below. If you do not need persistant storage, we have another profile that
-uses temporary storage (removed when your experiment ends) that you can use. 
-Instructions:
-Click on any node in the topology and choose the `shell` menu item. Your shared NFS directory is mounted at `/nfs` on all nodes."""
+"""This profile sets up MIND/fastswap/GAM servers"""
 
 # Import the Portal object.
 import geni.portal as portal
