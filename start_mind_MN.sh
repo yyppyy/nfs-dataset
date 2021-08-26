@@ -21,7 +21,6 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst nfs-kernel-server
 #sudo virsh net-start default
 
 
-
 #localize vm images
 echo "localizing vm images"
 sudo mkdir -p ${vm_dir}
