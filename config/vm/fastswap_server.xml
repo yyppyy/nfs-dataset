@@ -13,9 +13,11 @@
     <apic/>
     <vmport state='off'/>
   </features>
+  <!--
   <cpu mode='custom' match='exact' check='partial'>
     <model fallback='allow'>Broadwell-noTSX-IBRS</model>
   </cpu>
+  -->
   <clock offset='utc'>
     <timer name='rtc' tickpolicy='catchup'/>
     <timer name='pit' tickpolicy='delay'/>
@@ -32,7 +34,7 @@
     <emulator>/usr/bin/kvm-spice</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/media/data/yupeng/fastswap_server.qcow2'/>
+      <source file='/mydata/vm_images/fastswap_server.qcow2'/>
       <target dev='hda' bus='ide'/>
       <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
@@ -91,7 +93,7 @@
     </video>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
-        <address domain='0x0000' bus='0x5e' slot='0x00' function='0x0'/>
+        <address domain='0x0000' bus='0x41' slot='0x00' function='0x0'/>
       </source>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
     </hostdev>
