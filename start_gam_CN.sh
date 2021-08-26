@@ -5,8 +5,6 @@ nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
 vm_config_dir=/local/repository/config/vm/
 trace_dir=/mydata/traces/
-vm_mem=8192
-vm_vcpus=10
 default_net=192.168.122.0/24
 #apps="tf gc ma mc"
 apps="ma"
@@ -26,7 +24,6 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst nfs-kernel-server
 #sudo virsh net-start default
 
 
-
 #localize vm images
 echo "localizing vm images"
 sudo mkdir -p ${vm_dir}
@@ -34,19 +31,6 @@ for i in $(seq ${CN_first} ${CN_last}); do
     sudo cp ${nfs_dir}vm_images/gam_CN_1.qcow2 ${vm_dir}gam_CN_${i}.qcow2 &
 done
 wait
-
-
-#create VM
-echo "creating vms"
-for i in $(seq ${CN_first} ${CN_last}); do
-    sudo virsh create ${vm_config_dir}gam_CN${i}.xml
-    sleep 10
-done
-#for i in $(seq ${CN_first} ${CN_last}); do
-#    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole &
-#done
-#wait
-
 
 #localize traces
 echo "localizing traces"
@@ -61,7 +45,16 @@ for app in ${apps}; do
 done
 wait
 
-
+#create VM
+echo "creating vms"
+for i in $(seq ${CN_first} ${CN_last}); do
+    sudo virsh create ${vm_config_dir}gam_CN${i}.xml
+    sleep 10
+done
+#for i in $(seq ${CN_first} ${CN_last}); do
+#    sudo virt-install --name ubuntu_CN${i} --memory ${vm_mem} --vcpus ${vm_vcpus} --disk ${vm_dir}ubuntu_CN_${i}.qcow --import --network default --os-variant ubuntu18.04 --noautoconsole &
+#done
+#wait
 
 #create local nfs to feed data to vms
 echo "building NFS"
