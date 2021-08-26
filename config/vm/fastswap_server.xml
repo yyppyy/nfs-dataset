@@ -1,5 +1,5 @@
 <domain type='kvm'>
-  <name>fastswap_server_01</name>
+  <name>fastswap_server</name>
   <uuid>7fc21fa7-ee24-4a6f-933d-4992ad5ece46</uuid>
   <memory unit='KiB'>41943040</memory>
   <currentMemory unit='KiB'>41943040</currentMemory>
