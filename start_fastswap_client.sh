@@ -1,4 +1,4 @@
-trace_per_CN=2
+trace_per_CN=10
 nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
 vm_config_dir=/local/repository/config/vm/
