@@ -1,6 +1,7 @@
 nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
 vm_config_dir=/local/repository/config/vm/
+net_config_dir=/local/repository/config/network/
 trace_dir=/mydata/traces/
 default_net=192.168.122.0/24
 #apps="tf gc ma mc"
