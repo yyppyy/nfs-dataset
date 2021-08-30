@@ -23,7 +23,6 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst nfs-kernel-server
 sudo virsh net-destroy default
 sudo virsh net-undefine default
 sudo virsh net-create --file ${net_config_dir}default.xml
-sudo virsh net-start default
 
 
 #localize vm images
