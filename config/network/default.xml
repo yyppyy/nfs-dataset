@@ -7,8 +7,15 @@
   <ip address='192.168.122.1' netmask='255.255.255.0'>
     <dhcp>
       <range start='192.168.122.2' end='192.168.122.254'/>
-      <host mac='52:54:00:51:42:40' name='Ubuntu-CN1' ip='192.168.122.101'/>
-      <host mac='52:54:00:d7:da:64' name='Ubuntu-CN2' ip='192.168.122.102'/>
+      <host mac='52:54:00:51:42:40' name='ubuntu_CN1' ip='192.168.122.101'/>
+      <host mac='52:54:00:d7:da:64' name='ubuntu_CN2' ip='192.168.122.102'/>
+      <host mac='52:54:00:1f:51:98' name='ubuntu_CN3' ip='192.168.122.103'/>
+      <host mac='52:54:00:06:34:fb' name='ubuntu_CN4' ip='192.168.122.104'/>
+      <host mac='52:54:00:05:23:79' name='ubuntu_CN5' ip='192.168.122.105'/>
+      <host mac='52:54:00:ef:c1:5e' name='ubuntu_CN6' ip='192.168.122.106'/>
+      <host mac='52:54:00:b0:dc:61' name='ubuntu_CN7' ip='192.168.122.107'/>
+      <host mac='52:54:00:59:43:05' name='ubuntu_CN8' ip='192.168.122.108'/>
+      <host mac='52:54:00:98:ad:e2' name='ubuntu_MN' ip='192.168.122.11'/>
     </dhcp>
   </ip>
 </network>
