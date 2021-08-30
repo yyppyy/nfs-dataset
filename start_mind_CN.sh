@@ -4,6 +4,7 @@ trace_per_CN=10
 nfs_dir=/nfs/
 vm_dir=/mydata/vm_images/
 vm_config_dir=/local/repository/config/vm/
+net_config_dir=/local/repository/config/network/
 trace_dir=/mydata/traces/
 default_net=192.168.122.0/24
 #apps="tf gc ma mc"
@@ -19,9 +20,10 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst nfs-kernel-server
 
 
 #create default network
-#REPO_DIR=/local/repository/
-#sudo virsh net-define --file ${REPO_DIR}default.xml
-#sudo virsh net-start default
+sudo virsh net-destroy default
+sudo virsh net-undefine default
+sudo virsh net-create --file ${net_config_dir}default.xml
+sudo virsh net-start default
 
 
 #localize vm images
