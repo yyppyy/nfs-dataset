@@ -16,9 +16,9 @@ sudo apt install qemu-kvm libvirt-bin bridge-utils virtinst nfs-kernel-server
 
 
 #create default network
-#REPO_DIR=/local/repository/
-#sudo virsh net-define --file ${REPO_DIR}default.xml
-#sudo virsh net-start default
+sudo virsh net-destroy default
+sudo virsh net-undefine default
+sudo virsh net-create --file ${net_config_dir}default.xml
 
 
 #localize vm images
