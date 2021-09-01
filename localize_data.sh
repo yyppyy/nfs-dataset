@@ -18,9 +18,10 @@ echo "localizing vm images"
 sudo mkdir -p ${vm_dir}
 if [ ${vm_type} == "MN" ]; then
 
-    sudo cp ${nfs_dir}vm_images/ubuntu_MN.qcow2 ${vm_dir}
-    sudo cp ${nfs_dir}vm_images/gam_MN.qcow2 ${vm_dir}
-    sudo cp ${nfs_dir}vm_images/fastswap_server.qcow2 ${vm_dir}
+    sudo cp ${nfs_dir}vm_images/ubuntu_MN.qcow2 ${vm_dir} &
+    sudo cp ${nfs_dir}vm_images/gam_MN.qcow2 ${vm_dir} &
+    sudo cp ${nfs_dir}vm_images/fastswap_server.qcow2 ${vm_dir} &
+    wait
 
 elif [ ${vm_type} == "CN" ]; then
 
