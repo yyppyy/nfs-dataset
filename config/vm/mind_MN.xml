@@ -1,8 +1,8 @@
 <domain type='kvm' id='28'>
   <name>mind_MN</name>
   <uuid>45c27b5e-050b-4470-9ff8-2b18f4f29040</uuid>
-  <memory unit='KiB'>134217728</memory>
-  <currentMemory unit='KiB'>134217728</currentMemory>
+  <memory unit='KiB'>41943040</memory>
+  <currentMemory unit='KiB'>41943040</currentMemory>
   <vcpu placement='static' cpuset='1,3,5,7'>4</vcpu>
   <resource>
     <partition>/machine</partition>
