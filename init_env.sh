@@ -28,7 +28,7 @@ sudo mkdir -p ${vm_dir}
 for sys in ${syss}; do
     if [ ${sys} == "fastswap" ]; then
         sudo cp ${nfs_dir}vm_images/fastswap_client.qcow2 ${vm_dir} &
-    else if [ ${sys} == "gam" ]; then
+    elif [ ${sys} == "gam" ]; then
         for i in $(seq ${CN_first} ${CN_last}); do
             sudo cp ${nfs_dir}vm_images/gam_CN_1.qcow2 ${vm_dir}gam_CN_${i}.qcow2 &
         done
