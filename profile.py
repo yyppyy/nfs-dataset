@@ -21,6 +21,8 @@ imageList = [
     ('urn:publicid:IDN+emulab.net+image+emulab-ops//CENTOS7-64-STD', 'CENTOS 7'),
 ]
 
+nodeList = ["amd72", "amd74", "amd76", "amd79", "amd80"]
+
 # Do not change these unless you change the setup scripts too.
 nfsServerName = "nfs"
 nfsLanName    = "nfsLan"
@@ -94,7 +96,7 @@ MINDsw.hardware_type = params.phystype
 
 # The NFS clients, also attached to the NFS lan.
 for i in range(1, params.clientCount+1):
-    node = request.RawPC("node%d" % i)
+    node = request.RawPC(nodeList[i])
     node.hardware_type = 'c6525-100g'
     node.disk_image = params.osImage
     mybs = node.Blockstore("mybs%d" % i, "/mydata")
