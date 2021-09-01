@@ -16,5 +16,5 @@ for sys in ${syss}; do
     sudo virsh destroy ${sys}_MN
     sudo virsh undefine ${sys}_MN
 done
-sudo virsh create ${vm_config_dir}${sys}_MN.xml
+sudo virsh create ${vm_config_dir}${target_sys}_MN.xml
 sleep 10
