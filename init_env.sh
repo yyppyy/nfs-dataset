@@ -27,11 +27,11 @@ echo "localizing vm images"
 sudo mkdir -p ${vm_dir}
 for sys in ${syss}; do
     if [ ${sys} == "fastswap" ]; then
+        sudo cp ${nfs_dir}vm_images/fastswap_client.qcow2 ${vm_dir} &
+    else
         for i in $(seq ${CN_first} ${CN_last}); do
             sudo cp ${nfs_dir}vm_images/ubuntu_CN_${i}.qcow ${vm_dir} &
         done
-    else
-        sudo cp ${nfs_dir}vm_images/fastswap_client.qcow2 ${vm_dir} &
     fi
 done
 wait
