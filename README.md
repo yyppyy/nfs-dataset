@@ -21,3 +21,4 @@ echo Y | init_env.sh && localize_data.sh MN && setup_MN.sh gam
 ```
 
 I change the memory for mind MN to be 40GB because the old memory is too large to be allocated on current hardware.
+Only mind VM has static IP now.
