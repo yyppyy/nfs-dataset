@@ -1,9 +1,9 @@
 <domain type='kvm'>
-  <name>fastswap_client</name>
-  <uuid>2ad94df3-54a9-4d56-a3e0-ca5d5f0985af</uuid>
-  <memory unit='KiB'>16777216</memory>
-  <currentMemory unit='KiB'>16777216</currentMemory>
-  <vcpu placement='static' cpuset='24-47'>24</vcpu>
+  <name>fastswap_MN</name>
+  <uuid>7fc21fa7-ee24-4a6f-933d-4992ad5ece46</uuid>
+  <memory unit='KiB'>41943040</memory>
+  <currentMemory unit='KiB'>41943040</currentMemory>
+  <vcpu placement='static' cpuset='0-4'>4</vcpu>
   <os>
     <type arch='x86_64' machine='pc-i440fx-bionic'>hvm</type>
     <boot dev='hd'/>
@@ -14,31 +14,8 @@
     <vmport state='off'/>
   </features>
   <!--
-  <cpu mode='custom' match='exact' check='full'>
-    <model fallback='forbid'>Haswell-noTSX-IBRS</model>
-    <vendor>Intel</vendor>
-    <feature policy='require' name='vme'/>
-    <feature policy='require' name='ss'/>
-    <feature policy='require' name='vmx'/>
-    <feature policy='require' name='f16c'/>
-    <feature policy='require' name='rdrand'/>
-    <feature policy='require' name='hypervisor'/>
-    <feature policy='require' name='arat'/>
-    <feature policy='require' name='tsc_adjust'/>
-    <feature policy='require' name='umip'/>
-    <feature policy='require' name='md-clear'/>
-    <feature policy='require' name='stibp'/>
-    <feature policy='require' name='arch-capabilities'/>
-    <feature policy='require' name='ssbd'/>
-    <feature policy='require' name='xsaveopt'/>
-    <feature policy='require' name='pdpe1gb'/>
-    <feature policy='require' name='abm'/>
-    <feature policy='require' name='ibpb'/>
-    <feature policy='require' name='amd-stibp'/>
-    <feature policy='require' name='amd-ssbd'/>
-    <feature policy='require' name='skip-l1dfl-vmentry'/>
-    <feature policy='require' name='pschange-mc-no'/>
-    <feature policy='disable' name='aes'/>
+  <cpu mode='custom' match='exact' check='partial'>
+    <model fallback='allow'>Broadwell-noTSX-IBRS</model>
   </cpu>
   -->
   <clock offset='utc'>
@@ -57,9 +34,9 @@
     <emulator>/usr/bin/kvm-spice</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/mydata/vm_images/fastswap_client.qcow2'/>
-      <target dev='vda' bus='virtio'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+      <source file='/mydata/vm_images/fastswap_server.qcow2'/>
+      <target dev='hda' bus='ide'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
     <controller type='usb' index='0' model='ich9-ehci1'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x7'/>
@@ -77,13 +54,16 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x2'/>
     </controller>
     <controller type='pci' index='0' model='pci-root'/>
+    <controller type='ide' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+    </controller>
     <controller type='virtio-serial' index='0'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
     </controller>
     <interface type='network'>
-      <mac address='52:54:00:26:76:e8'/>
+      <mac address='52:54:00:e2:db:d0'/>
       <source network='default'/>
-      <model type='virtio'/>
+      <model type='rtl8139'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
     </interface>
     <serial type='pty'>
@@ -98,9 +78,6 @@
       <target type='virtio' name='com.redhat.spice.0'/>
       <address type='virtio-serial' controller='0' bus='0' port='1'/>
     </channel>
-    <input type='tablet' bus='usb'>
-      <address type='usb' bus='0' port='1'/>
-    </input>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
     <graphics type='spice' autoport='yes'>
@@ -121,13 +98,13 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
     </hostdev>
     <redirdev bus='usb' type='spicevmc'>
-      <address type='usb' bus='0' port='2'/>
+      <address type='usb' bus='0' port='1'/>
     </redirdev>
     <redirdev bus='usb' type='spicevmc'>
-      <address type='usb' bus='0' port='3'/>
+      <address type='usb' bus='0' port='2'/>
     </redirdev>
     <memballoon model='virtio'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
     </memballoon>
   </devices>
 </domain>

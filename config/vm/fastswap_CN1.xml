@@ -1,26 +1,9 @@
-<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
-  <name>ubuntu_CN2</name>
-  <uuid>9e0948ef-325f-40b7-9b31-6766080a1baa</uuid>
+<domain type='kvm'>
+  <name>fastswap_CN1</name>
+  <uuid>2ad94df3-54a9-4d56-a3e0-ca5d5f0985af</uuid>
   <memory unit='KiB'>16777216</memory>
   <currentMemory unit='KiB'>16777216</currentMemory>
-  <vcpu placement='static' cpuset='12-23'>12</vcpu>
-  <cputune>
-    <vcpupin vcpu='0' cpuset='12'/>
-    <vcpupin vcpu='1' cpuset='13'/>
-    <vcpupin vcpu='2' cpuset='14'/>
-    <vcpupin vcpu='3' cpuset='15'/>
-    <vcpupin vcpu='4' cpuset='16'/>
-    <vcpupin vcpu='5' cpuset='17'/>
-    <vcpupin vcpu='6' cpuset='18'/>
-    <vcpupin vcpu='7' cpuset='19'/>
-    <vcpupin vcpu='8' cpuset='20'/>
-    <vcpupin vcpu='9' cpuset='21'/>
-    <vcpupin vcpu='10' cpuset='22'/>
-    <vcpupin vcpu='11' cpuset='23'/>
-  </cputune>
-  <resource>
-    <partition>/machine</partition>
-  </resource>
+  <vcpu placement='static' cpuset='24-47'>24</vcpu>
   <os>
     <type arch='x86_64' machine='pc-i440fx-bionic'>hvm</type>
     <boot dev='hd'/>
@@ -74,8 +57,7 @@
     <emulator>/usr/bin/kvm-spice</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/mydata/vm_images/ubuntu_CN_2.qcow'/>
-      <backingStore/>
+      <source file='/mydata/vm_images/fastswap_client.qcow2'/>
       <target dev='vda' bus='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
     </disk>
@@ -99,7 +81,7 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
     </controller>
     <interface type='network'>
-      <mac address='52:54:00:d7:da:64'/>
+      <mac address='52:54:00:26:76:e8'/>
       <source network='default'/>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
@@ -121,8 +103,8 @@
     </input>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
-    <graphics type='spice' autoport='yes' listen='127.0.0.1'>
-      <listen type='address' address='127.0.0.1'/>
+    <graphics type='spice' autoport='yes'>
+      <listen type='address'/>
       <image compression='off'/>
     </graphics>
     <sound model='ich6'>
@@ -133,7 +115,6 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
     </video>
     <hostdev mode='subsystem' type='pci' managed='yes'>
-      <driver name='vfio'/>
       <source>
         <address domain='0x0000' bus='0x41' slot='0x00' function='0x0'/>
       </source>
@@ -149,11 +130,5 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
     </memballoon>
   </devices>
-  <!-- <seclabel type='dynamic' model='apparmor' relabel='yes'/> -->
-  <!-- <seclabel type='dynamic' model='dac' relabel='yes'/> -->
-  <qemu:commandline>
-    <qemu:arg value='-gdb'/>
-    <qemu:arg value='tcp::60002'/>
-  </qemu:commandline>
 </domain>
 
