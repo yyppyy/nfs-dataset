@@ -15,7 +15,7 @@ For MN:
 ```
 echo Y | init_env.sh && localize_data.sh MN && setup_MN.sh $sys
 ```
-For example create MN 5 for gam, use:
+For example create MN for gam, use:
 ```
 echo Y | init_env.sh && localize_data.sh MN && setup_MN.sh gam
 ```
