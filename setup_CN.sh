@@ -19,6 +19,6 @@ for i in $(seq ${CN_first} ${CN_last}); do
         sudo virsh destroy ${sys}_CN${i}
         sudo virsh undefine ${sys}_CN${i}
     done
-    sudo virsh create ${vm_config_dir}${sys}_CN${i}.xml
+    sudo virsh create ${vm_config_dir}${target_sys}_CN${i}.xml
     sleep 10
 done
